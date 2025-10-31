@@ -106,10 +106,10 @@ const Navbar = () => {
       role="navigation"
       aria-label="Main navigation"
       className={`
-        fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
+        fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
         ${isScrolled
-          ? "w-[90%] md:w-[70%] bg-white/95 shadow-lg rounded-full"
-          : "w-[90%] md:w-[75%] bg-transparent rounded-full"}
+          ? "w-[80%] md:w-[1020px] bg-white/95 shadow-lg rounded-full"
+          : "w-[80%] md:w-[1020px] bg-transparent rounded-full"}
       `}
     >
       <div className={`flex items-center justify-between px-4 sm:px-6 ${
