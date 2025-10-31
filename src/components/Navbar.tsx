@@ -1,67 +1,120 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
   const menuRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
+  // Scroll listener
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close on Escape and manage focus
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
-    };
-    if (isOpen) document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen]);
+  // Open menu
+  const handleOpen = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsClosing(false);
+    setIsOpen(true);
+  }, []);
 
-  // Close when clicking outside the mobile menu
+  // Close menu with animation
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    timeoutRef.current = window.setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+      timeoutRef.current = null;
+    }, 200) as unknown as number;
+  }, []);
+
+  // Cleanup on unmount
   useEffect(() => {
-    const onPointer = (e: PointerEvent) => {
-      if (!isOpen) return;
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  // Accessibility + scroll lock when mobile menu open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // focus the close button once open
+    setTimeout(() => {
+      closeBtnRef.current?.focus();
+    }, 0);
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+      if (e.key === "Tab") {
+        const container = menuRef.current;
+        if (!container) return;
+        const focusable = Array.from(
+          container.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => !el.hasAttribute("disabled"));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     };
-    document.addEventListener("pointerdown", onPointer);
-    return () => document.removeEventListener("pointerdown", onPointer);
-  }, [isOpen]);
 
-  // Lock scroll when mobile menu is open and focus close button
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      setTimeout(() => closeBtnRef.current?.focus(), 0);
-    } else {
-      document.body.style.overflow = prev;
-    }
-    return () => {
-      document.body.style.overflow = prev;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) {
+        handleClose();
+      }
     };
-  }, [isOpen]);
 
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen, handleClose]);
 
   return (
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 shadow-lg rounded-2xl" : "bg-transparent"
-      }`}
+      className={`
+        fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
+        ${isScrolled
+          ? "w-[90%] md:w-[70%] bg-white/95 shadow-lg rounded-full"
+          : "w-[90%] md:w-[75%] bg-transparent rounded-full"}
+      `}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <div className={`flex items-center justify-between px-4 sm:px-6 ${
+        isScrolled ? "py-3" : "py-5"
+      }`}>
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <img
@@ -71,7 +124,9 @@ const Navbar = () => {
             height={44}
             className="rounded-full object-cover"
           />
-          <span className="font-semibold text-lg text-gray-800">Scritches</span>
+          <span className="font-semibold text-lg text-gray-800">
+            Scritches
+          </span>
         </div>
 
         {/* Desktop Links */}
@@ -97,33 +152,34 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* CTA */}
+        {/* CTA (Desktop) */}
         <div className="hidden md:flex">
           <button className="flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-green-700 transition">
             Start for Free <FiArrowUpRight />
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile menu button */}
         <button
           onClick={handleOpen}
           aria-label="Open menu"
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
-          className="md:hidden text-2xl text-gray-800 p-2 rounded-md hover:bg-gray-100"
+          className="md:hidden text-3xl text-gray-800 p-2 rounded-md hover:bg-gray-100"
         >
           <HiOutlineMenuAlt3 />
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div
           id="mobile-menu"
           ref={menuRef}
-          className="fixed inset-0 z-50 flex flex-col bg-white p-6 animate-slide-in"
-          aria-modal="true"
+          className={`fixed inset-0 z-50 flex flex-col bg-white p-6 transition-transform duration-200 ease-in-out
+            ${isClosing ? "translate-x-full opacity-0" : "translate-x-0 opacity-100"}`}
           role="dialog"
+          aria-modal="true"
         >
           <div className="flex justify-between items-center mb-8">
             <div className="flex items-center space-x-3">
@@ -134,19 +190,21 @@ const Navbar = () => {
                 height={40}
                 className="rounded-full object-cover"
               />
-              <span className="font-semibold text-lg">Scritches</span>
+              <span className="font-semibold text-lg text-gray-800">
+                Scritches
+              </span>
             </div>
             <button
               ref={closeBtnRef}
               onClick={handleClose}
               aria-label="Close menu"
-              className="text-2xl p-2 rounded-md hover:bg-gray-100"
+              className="text-3xl p-2 rounded-md hover:bg-gray-100"
             >
               <HiX />
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col items-start space-y-6 text-lg font-medium text-gray-700">
+          <nav className="flex-1 flex flex-col items-start space-y-6 text-lg font-medium text-gray-700">
             <button
               onClick={handleClose}
               className="flex items-center space-x-1 hover:text-green-700"
@@ -154,21 +212,11 @@ const Navbar = () => {
               <span>Scritches For</span>
               <span aria-hidden>▾</span>
             </button>
-            <a href="#" onClick={handleClose}>
-              Pricing
-            </a>
-            <a href="#" onClick={handleClose}>
-              Blog
-            </a>
-            <a href="#" onClick={handleClose}>
-              Product Updates
-            </a>
-            <a href="#" onClick={handleClose}>
-              Terms &amp; Conditions
-            </a>
-            <a href="#" onClick={handleClose}>
-              Privacy Policy
-            </a>
+            <a href="#" onClick={handleClose}>Pricing</a>
+            <a href="#" onClick={handleClose}>Blog</a>
+            <a href="#" onClick={handleClose}>Product Updates</a>
+            <a href="#" onClick={handleClose}>Terms &amp; Conditions</a>
+            <a href="#" onClick={handleClose}>Privacy Policy</a>
             <button
               onClick={handleClose}
               className="flex items-center space-x-1 hover:text-green-700"
@@ -176,7 +224,7 @@ const Navbar = () => {
               <span>Solutions</span>
               <span aria-hidden>▾</span>
             </button>
-          </div>
+          </nav>
 
           <div className="mt-6">
             <button
