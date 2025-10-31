@@ -108,8 +108,8 @@ const Navbar = () => {
       className={`
         fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
         ${isScrolled
-          ? "w-[80%] md:w-[1020px] bg-white/95 shadow-lg rounded-full"
-          : "w-[80%] md:w-[1020px] bg-transparent rounded-full"}
+          ? "w-[90%] md:w-[899px] mt-2 bg-white/95 shadow-lg rounded-full"
+          : "w-[90%] md:w-[1027px] bg-transparent rounded-full"}
       `}
     >
       <div className={`flex items-center justify-between px-4 sm:px-6 ${
@@ -120,11 +120,11 @@ const Navbar = () => {
           <img
             src="/images/navbar-pet.avif"
             alt="Scritches — happy pet logo"
-            width={44}
-            height={44}
+            width={45}
+            height={45}
             className="rounded-full object-cover"
           />
-          <span className="font-semibold text-lg text-gray-800">
+          <span className="font-medium pt-1.5 text-[#494949] text-[20px]">
             Scritches
           </span>
         </div>
