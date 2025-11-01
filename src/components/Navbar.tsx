@@ -4,7 +4,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-between max-w-5xl mx-auto p-2 rounded-full">
+    <div className=" items-center justify-between max-w-5xl mx-auto p-2 rounded-full md:flex hidden">
       <div className="flex items-center gap-3">
         <img
           src="/images/navbar-pet.avif"
@@ -14,14 +14,31 @@ const Navbar = () => {
         <span className="font-semibold text-xl text-[#494949]">Scritches</span>
       </div>
 
-      <ul className="flex items-center justify-between gap-8 text-lg">
+      <ul className="flex items-center justify-between gap-5 2xl:gap-8 text-lg">
         {navbarLinks.map((link) => (
           <li
             key={link.name}
-            className="flex items-center gap-2 relative group"
+            className="flex items-center gap-2 relative group cursor-pointer"
           >
-            <p>{link.name}</p>
-            {link.subLinks && <BsChevronDown className="size-4" />}
+            <p
+              className={`font-medium ${
+                link.name === "Price" || link.name === "Blog"
+                  ? "text-black"
+                  : "text-black/60"
+              } ${link.name === "More" && "2xl:block hidden"}`}
+            >
+              {link.name}
+            </p>
+            {link.subLinks && (
+              <BsChevronDown
+                className={`size-4  ${
+                  link.name === "More" && "2xl:block hidden"
+                }`}
+              />
+            )}
+            {link.name === "Scritches For" && (
+              <div className="w-[1.5px] h-4 bg-black/50 ml-5 2xl:block hidden"></div>
+            )}
 
             {link.subLinks && (
               <ul className="absolute top-10 left-1/2 -translate-x-1/2 bg-white rounded-2xl px-7 py-6 text-lg whitespace-nowrap group-hover:flex flex-col gap-1.5 hidden shadow-xl shadow-black/5">
