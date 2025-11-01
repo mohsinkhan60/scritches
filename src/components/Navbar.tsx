@@ -11,6 +11,8 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
   const timeoutRef = useRef<number | null>(null);
+  const enterTimeoutRef = useRef<number | null>(null);
+  const [isEntering, setIsEntering] = useState(false);
 
   // Scroll listener
   useEffect(() => {
@@ -27,24 +29,41 @@ const Navbar = () => {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
+    if (enterTimeoutRef.current) {
+      clearTimeout(enterTimeoutRef.current);
+      enterTimeoutRef.current = null;
+    }
     setIsClosing(false);
     setIsOpen(true);
+    // start with entering state so we can animate from -translate-y-full -> translate-y-0
+    setIsEntering(true);
+    enterTimeoutRef.current = window.setTimeout(
+      () => setIsEntering(false),
+      20
+    ) as unknown as number;
   }, []);
 
   // Close menu with animation
   const handleClose = useCallback(() => {
+    // ensure any pending enter timer is cleared
+    if (enterTimeoutRef.current) {
+      clearTimeout(enterTimeoutRef.current);
+      enterTimeoutRef.current = null;
+      setIsEntering(false);
+    }
     setIsClosing(true);
     timeoutRef.current = window.setTimeout(() => {
       setIsOpen(false);
       setIsClosing(false);
       timeoutRef.current = null;
-    }, 200) as unknown as number;
+    }, 300) as unknown as number;
   }, []);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (enterTimeoutRef.current) clearTimeout(enterTimeoutRef.current);
     };
   }, []);
 
@@ -53,14 +72,10 @@ const Navbar = () => {
     if (!isOpen) return;
 
     // focus the close button once open
-    setTimeout(() => {
-      closeBtnRef.current?.focus();
-    }, 0);
+    setTimeout(() => closeBtnRef.current?.focus(), 0);
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        handleClose();
-      }
+      if (e.key === "Escape") handleClose();
       if (e.key === "Tab") {
         const container = menuRef.current;
         if (!container) return;
@@ -68,7 +83,7 @@ const Navbar = () => {
           container.querySelectorAll<HTMLElement>(
             'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
           )
-        ).filter((el) => !el.hasAttribute("disabled"));
+        );
         if (focusable.length === 0) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -83,9 +98,7 @@ const Navbar = () => {
     };
 
     const onPointerDown = (e: PointerEvent) => {
-      if (!menuRef.current?.contains(e.target as Node)) {
-        handleClose();
-      }
+      if (!menuRef.current?.contains(e.target as Node)) handleClose();
     };
 
     document.addEventListener("keydown", onKeyDown);
@@ -105,37 +118,40 @@ const Navbar = () => {
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`
-        fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
-        ${isScrolled
-          ? "w-[90%] md:w-[899px] mt-2 bg-white/95 shadow-lg rounded-full"
-          : "w-[90%] md:w-[1027px] bg-transparent rounded-full"}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
+        ${
+          isScrolled
+            ? "w-full sm:w-[80%] md:w-[699px] lg:w-[899px] mx-3 md:mx-0 mt-2 lg:bg-white/95 shadow-lg rounded-full lg:shadow-none lg:mx-0 lg:mt-2"
+            : "w-full sm:w-[80%] md:w-[799px] lg:w-[1027px] mx-3 md:mx-0 bg-transparent rounded-full lg:rounded-none lg:mx-0"
+        }
       `}
     >
-      <div className={`flex items-center justify-between px-4 sm:px-6 ${
-        isScrolled ? "py-3" : "py-5"
-      }`}>
+      <div
+        className={`flex items-center justify-between px-3 sm:px-5 md:px-6 ${
+          isScrolled ? "py-3" : "py-5"
+        } mx-3 md:mx-0 mt-2 bg-white/95 shadow-lg rounded-full lg:bg-transparent lg:shadow-none lg:rounded-none lg:mt-0`}
+      >
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <img
             src="/images/navbar-pet.avif"
-            alt="Scritches — happy pet logo"
+            alt="Scritches logo"
             width={45}
             height={45}
             className="rounded-full object-cover"
           />
-          <span className="font-medium pt-1.5 text-[#494949] text-[20px]">
+          <span className="font-medium pt-1 text-[#494949] text-[20px]">
             Scritches
           </span>
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8 text-gray-700">
-          <button className="flex items-center space-x-1 hover:text-green-700 focus:outline-none">
+        <div className="hidden lg:flex items-center space-x-8 text-gray-700">
+          <button className="flex items-center space-x-1 hover:text-green-700">
             <span>Solutions</span>
             <span aria-hidden>▾</span>
           </button>
-          <button className="flex items-center space-x-1 hover:text-green-700 focus:outline-none">
+          <button className="flex items-center space-x-1 hover:text-green-700">
             <span>Scritches For</span>
             <span aria-hidden>▾</span>
           </button>
@@ -146,40 +162,62 @@ const Navbar = () => {
           <a href="#" className="hover:text-green-700">
             Blog
           </a>
-          <button className="flex items-center space-x-1 hover:text-green-700 focus:outline-none">
+          <button className="flex items-center space-x-1 hover:text-green-700">
             <span>More</span>
             <span aria-hidden>▾</span>
           </button>
         </div>
 
         {/* CTA (Desktop) */}
-        <div className="hidden md:flex">
+        <div className="hidden lg:flex">
           <button className="flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-green-700 transition">
             Start for Free <FiArrowUpRight />
           </button>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
+          type="button"
           onClick={handleOpen}
           aria-label="Open menu"
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
-          className="md:hidden text-3xl text-gray-800 p-2 rounded-md hover:bg-gray-100"
+          className="lg:hidden text-3xl text-gray-800 p-3 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
         >
+          <span className="sr-only">Open navigation menu</span>
           <HiOutlineMenuAlt3 />
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Backdrop */}
+      {isOpen && (
+        <div
+          role="presentation"
+          aria-hidden={isClosing}
+          onClick={handleClose}
+          className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ${
+            isClosing
+              ? "opacity-0 pointer-events-none"
+              : "opacity-100 pointer-events-auto"
+          }`}
+        />
+      )}
+
+      {/* Mobile Menu */}
       {isOpen && (
         <div
           id="mobile-menu"
           ref={menuRef}
-          className={`fixed inset-0 z-50 flex flex-col bg-white p-6 transition-transform duration-200 ease-in-out
-            ${isClosing ? "translate-x-full opacity-0" : "translate-x-0 opacity-100"}`}
           role="dialog"
           aria-modal="true"
+          aria-labelledby="mobile-menu-title"
+          className={`fixed top-0 left-0 right-0 z-50 flex flex-col bg-white p-6 transition-transform duration-300 ease-in-out shadow-xl ${
+            isClosing
+              ? "-translate-y-full opacity-0"
+              : isEntering
+              ? "-translate-y-full opacity-0"
+              : "translate-y-0 opacity-100"
+          }`}
         >
           <div className="flex justify-between items-center mb-8">
             <div className="flex items-center space-x-3">
@@ -212,11 +250,21 @@ const Navbar = () => {
               <span>Scritches For</span>
               <span aria-hidden>▾</span>
             </button>
-            <a href="#" onClick={handleClose}>Pricing</a>
-            <a href="#" onClick={handleClose}>Blog</a>
-            <a href="#" onClick={handleClose}>Product Updates</a>
-            <a href="#" onClick={handleClose}>Terms &amp; Conditions</a>
-            <a href="#" onClick={handleClose}>Privacy Policy</a>
+            <a href="#" onClick={handleClose}>
+              Pricing
+            </a>
+            <a href="#" onClick={handleClose}>
+              Blog
+            </a>
+            <a href="#" onClick={handleClose}>
+              Product Updates
+            </a>
+            <a href="#" onClick={handleClose}>
+              Terms &amp; Conditions
+            </a>
+            <a href="#" onClick={handleClose}>
+              Privacy Policy
+            </a>
             <button
               onClick={handleClose}
               className="flex items-center space-x-1 hover:text-green-700"
