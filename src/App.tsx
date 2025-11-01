@@ -1,5 +1,5 @@
-import Header from "./components/Header";
-import HeaderCopy from "./components/Header copy";
+import Header from "./components/Home/Header";
+import HeaderCopy from "./components/Home/Header copy";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
 
