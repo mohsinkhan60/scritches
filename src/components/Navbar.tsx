@@ -1,290 +1,52 @@
-"use client";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { FiArrowUpRight } from "react-icons/fi";
-import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
+import { BsChevronDown } from "react-icons/bs";
+import { navbarLinks } from "../constants/navbar";
+import { LuArrowUpRight } from "react-icons/lu";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-
-  const menuRef = useRef<HTMLDivElement | null>(null);
-  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
-  const timeoutRef = useRef<number | null>(null);
-  const enterTimeoutRef = useRef<number | null>(null);
-  const [isEntering, setIsEntering] = useState(false);
-
-  // Scroll listener
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Open menu
-  const handleOpen = useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-    if (enterTimeoutRef.current) {
-      clearTimeout(enterTimeoutRef.current);
-      enterTimeoutRef.current = null;
-    }
-    setIsClosing(false);
-    setIsOpen(true);
-    // start with entering state so we can animate from -translate-y-full -> translate-y-0
-    setIsEntering(true);
-    enterTimeoutRef.current = window.setTimeout(
-      () => setIsEntering(false),
-      20
-    ) as unknown as number;
-  }, []);
-
-  // Close menu with animation
-  const handleClose = useCallback(() => {
-    // ensure any pending enter timer is cleared
-    if (enterTimeoutRef.current) {
-      clearTimeout(enterTimeoutRef.current);
-      enterTimeoutRef.current = null;
-      setIsEntering(false);
-    }
-    setIsClosing(true);
-    timeoutRef.current = window.setTimeout(() => {
-      setIsOpen(false);
-      setIsClosing(false);
-      timeoutRef.current = null;
-    }, 300) as unknown as number;
-  }, []);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      if (enterTimeoutRef.current) clearTimeout(enterTimeoutRef.current);
-    };
-  }, []);
-
-  // Accessibility + scroll lock when mobile menu open
-  useEffect(() => {
-    if (!isOpen) return;
-
-    // focus the close button once open
-    setTimeout(() => closeBtnRef.current?.focus(), 0);
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleClose();
-      if (e.key === "Tab") {
-        const container = menuRef.current;
-        if (!container) return;
-        const focusable = Array.from(
-          container.querySelectorAll<HTMLElement>(
-            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-          )
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (!menuRef.current?.contains(e.target as Node)) handleClose();
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("pointerdown", onPointerDown);
-
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [isOpen, handleClose]);
-
   return (
-    <nav
-      role="navigation"
-      aria-label="Main navigation"
-      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
-        ${
-          isScrolled
-            ? "w-full sm:w-[80%] md:w-[699px] lg:w-[899px] mx-3 md:mx-0 mt-2 lg:bg-white/95 shadow-lg rounded-full lg:shadow-none lg:mx-0 lg:mt-2"
-            : "w-full sm:w-[80%] md:w-[799px] lg:w-[1027px] mx-3 md:mx-0 bg-transparent rounded-full lg:rounded-none lg:mx-0"
-        }
-      `}
-    >
-      <div
-        className={`flex items-center justify-between px-3 sm:px-5 md:px-6 ${
-          isScrolled ? "py-3" : "py-5"
-        } mx-3 md:mx-0 mt-2 bg-white/95 shadow-lg rounded-full lg:bg-transparent lg:shadow-none lg:rounded-none lg:mt-0`}
-      >
-        {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <img
-            src="/images/navbar-pet.avif"
-            alt="Scritches logo"
-            width={45}
-            height={45}
-            className="rounded-full object-cover"
-          />
-          <span className="font-medium pt-1 text-[#494949] text-[20px]">
-            Scritches
-          </span>
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center space-x-8 text-gray-700">
-          <button className="flex items-center space-x-1 hover:text-green-700">
-            <span>Solutions</span>
-            <span aria-hidden>▾</span>
-          </button>
-          <button className="flex items-center space-x-1 hover:text-green-700">
-            <span>Scritches For</span>
-            <span aria-hidden>▾</span>
-          </button>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="hover:text-green-700">
-            Pricing
-          </a>
-          <a href="#" className="hover:text-green-700">
-            Blog
-          </a>
-          <button className="flex items-center space-x-1 hover:text-green-700">
-            <span>More</span>
-            <span aria-hidden>▾</span>
-          </button>
-        </div>
-
-        {/* CTA (Desktop) */}
-        <div className="hidden lg:flex">
-          <button className="flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-green-700 transition">
-            Start for Free <FiArrowUpRight />
-          </button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          onClick={handleOpen}
-          aria-label="Open menu"
-          aria-expanded={isOpen}
-          aria-controls="mobile-menu"
-          className="lg:hidden text-3xl text-gray-800 p-3 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
-        >
-          <span className="sr-only">Open navigation menu</span>
-          <HiOutlineMenuAlt3 />
-        </button>
+    <div className="flex items-center justify-between max-w-5xl mx-auto p-2 rounded-full">
+      <div className="flex items-center gap-3">
+        <img
+          src="/images/navbar-pet.avif"
+          alt="Scritches logo"
+          className="w-12 rounded-full object-cover"
+        />
+        <span className="font-semibold text-xl text-[#494949]">Scritches</span>
       </div>
 
-      {/* Backdrop */}
-      {isOpen && (
-        <div
-          role="presentation"
-          aria-hidden={isClosing}
-          onClick={handleClose}
-          className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ${
-            isClosing
-              ? "opacity-0 pointer-events-none"
-              : "opacity-100 pointer-events-auto"
-          }`}
-        />
-      )}
+      <ul className="flex items-center justify-between gap-8 text-lg">
+        {navbarLinks.map((link) => (
+          <li
+            key={link.name}
+            className="flex items-center gap-2 relative group"
+          >
+            <p>{link.name}</p>
+            {link.subLinks && <BsChevronDown className="size-4" />}
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div
-          id="mobile-menu"
-          ref={menuRef}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="mobile-menu-title"
-          className={`fixed top-0 left-0 right-0 z-50 flex flex-col bg-white p-6 transition-transform duration-300 ease-in-out shadow-xl ${
-            isClosing
-              ? "-translate-y-full opacity-0"
-              : isEntering
-              ? "-translate-y-full opacity-0"
-              : "translate-y-0 opacity-100"
-          }`}
-        >
-          <div className="flex justify-between items-center mb-8">
-            <div className="flex items-center space-x-3">
-              <img
-                src="/images/navbar-pet.avif"
-                alt="Scritches — happy pet logo"
-                width={40}
-                height={40}
-                className="rounded-full object-cover"
-              />
-              <span className="font-semibold text-lg text-gray-800">
-                Scritches
-              </span>
-            </div>
-            <button
-              ref={closeBtnRef}
-              onClick={handleClose}
-              aria-label="Close menu"
-              className="text-3xl p-2 rounded-md hover:bg-gray-100"
-            >
-              <HiX />
-            </button>
+            {link.subLinks && (
+              <ul className="absolute top-10 left-1/2 -translate-x-1/2 bg-white rounded-2xl px-7 py-6 text-lg whitespace-nowrap group-hover:flex flex-col gap-1.5 hidden shadow-xl shadow-black/5">
+                {link.subLinks?.map((link) => (
+                  <li key={link.name}>
+                    <p>{link.name}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div>
+        <button className="bg-orange-500 text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-8 border border-black py-2 flex items-center gap-2">
+          Start for Free{" "}
+          <div className="relative transition-all duration-500">
+            <LuArrowUpRight className="opacity-0 size-5" />
+            <LuArrowUpRight className="size-5 absolute transition-all duration-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:-translate-y-[84%] group-hover:-translate-x-[20%]" />
+            <LuArrowUpRight className="size-5 absolute transition-all duration-500 opacity-0 right-full group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:top-1/2 group-hover:-translate-y-1/2" />
           </div>
-
-          <nav className="flex-1 flex flex-col items-start space-y-6 text-lg font-medium text-gray-700">
-            <button
-              onClick={handleClose}
-              className="flex items-center space-x-1 hover:text-green-700"
-            >
-              <span>Scritches For</span>
-              <span aria-hidden>▾</span>
-            </button>
-            <a href="#" onClick={handleClose}>
-              Pricing
-            </a>
-            <a href="#" onClick={handleClose}>
-              Blog
-            </a>
-            <a href="#" onClick={handleClose}>
-              Product Updates
-            </a>
-            <a href="#" onClick={handleClose}>
-              Terms &amp; Conditions
-            </a>
-            <a href="#" onClick={handleClose}>
-              Privacy Policy
-            </a>
-            <button
-              onClick={handleClose}
-              className="flex items-center space-x-1 hover:text-green-700"
-            >
-              <span>Solutions</span>
-              <span aria-hidden>▾</span>
-            </button>
-          </nav>
-
-          <div className="mt-6">
-            <button
-              onClick={handleClose}
-              className="w-full flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-3 rounded-full hover:bg-green-700 transition"
-            >
-              Start for Free <FiArrowUpRight />
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
+        </button>
+      </div>
+    </div>
   );
 };
 
