@@ -81,7 +81,7 @@ const MobileNavbar = () => {
           </li>
         ))}
 
-        <button className="bg-orange-500 mt-5 text-base text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-7 border border-black py-2 w-fit flex items-center gap-2">
+        <button className="bg-primary mt-5 text-base text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-7 border border-black py-2 w-fit flex items-center gap-2">
           Start for Free{" "}
           <div className="relative transition-all duration-500">
             <LuArrowUpRight className="opacity-0 size-5" />

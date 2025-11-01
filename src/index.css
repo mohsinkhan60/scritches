@@ -1,9 +1,7 @@
 @import "tailwindcss";
-:root {
-  --color-primary: "#53A57D";
-}
-.dark {
-  --color-primary: "#53A57D";
+
+@theme {
+  --color-primary: #53a57d;
 }
 
 body {

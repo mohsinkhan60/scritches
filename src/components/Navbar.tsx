@@ -31,7 +31,7 @@ const Navbar = () => {
             </p>
             {link.subLinks && (
               <BsChevronDown
-                className={`size-4  ${
+                className={`size-4 text-primary ${
                   link.name === "More" && "2xl:block hidden"
                 }`}
               />
@@ -54,7 +54,7 @@ const Navbar = () => {
       </ul>
 
       <div>
-        <button className="bg-orange-500 text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-8 border border-black py-2 flex items-center gap-2">
+        <button className="bg-primary text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-8 border border-black py-2 flex items-center gap-2">
           Start for Free{" "}
           <div className="relative transition-all duration-500">
             <LuArrowUpRight className="opacity-0 size-5" />
