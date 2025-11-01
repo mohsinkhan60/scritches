@@ -4,12 +4,12 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 const Navbar = () => {
   return (
-    <div className=" items-center justify-between max-w-5xl mx-auto p-2 rounded-full md:flex hidden">
+    <div className=" items-center justify-between p-3 lg:p-2 max-w-5xl mx-auto rounded-full md:flex hidden">
       <div className="flex items-center gap-3">
         <img
           src="/images/navbar-pet.avif"
           alt="Scritches logo"
-          className="w-12 rounded-full object-cover"
+          className="lg:w-12 w-8 rounded-full object-cover"
         />
         <span className="font-semibold text-xl text-[#494949]">Scritches</span>
       </div>
