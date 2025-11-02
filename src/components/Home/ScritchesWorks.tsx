@@ -87,25 +87,25 @@ const ScritchesWorks = () => {
   return (
     <div className="min-h-screen py-1 px-4 sm:px-6 lg:px-8">
       {/* Header Section */}
-      <div className="text-center mb-20">
-        <span className="inline-block bg-[#53A57D] text-white text-[13px] font-semibold px-4 py-1 rounded-xl mb-6">
+      <div className="text-center mb-12 sm:mb-16 md:mb-20">
+        <span className="inline-block bg-[#53A57D] text-white text-xs sm:text-[13px] font-semibold px-3 sm:px-4 py-1 rounded-xl mb-4 sm:mb-6">
           BENEFITS
         </span>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 px-2">
           Scritches Works for You
         </h1>
       </div>
 
       {/* Main Content */}
       <div className="max-width-full md:mx-[38px] mx-auto">
-        <div className="gap-6 lg:gap-8 flex items-center justify-center">
+        <div className="gap-6 lg:gap-8 flex flex-col lg:flex-row items-center justify-center">
           {/* Left Section - Content */}
-          <div className="lg:col-span-1 flex-1 space-y-6">
+          <div className="lg:col-span-1 flex-1 space-y-4 sm:space-y-6 w-full">
             <div>
-              <h2 className=" leading-tight text-3xl sm:text-4xl lg:text-[55px] font-bold text-slate-950 mb-4">
+              <h2 className="leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-[55px] font-bold text-slate-950 mb-3 sm:mb-4">
                 Better Bookings, Better Business
               </h2>
-              <p className="text-[#686767] font-medium sm:text-xl">
+              <p className="text-[#686767] font-medium text-base sm:text-lg md:text-xl">
                 With Scritches, online booking is a breeze for you and your
                 clients. They can request services anytime, anywhere, making it
                 easier than ever to connect with new clients.
@@ -113,17 +113,17 @@ const ScritchesWorks = () => {
             </div>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 p-3 bg-[#F8FAFC] rounded-xl border border-gray-200"
+                  className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#F8FAFC] rounded-xl border border-gray-200"
                 >
-                  <div className="shrink-0 w-11 h-11 bg-primary text-white rounded-lg flex items-center justify-center text-xl">
+                  <div className="shrink-0 w-9 h-9 sm:w-11 sm:h-11 bg-primary text-white rounded-lg flex items-center justify-center text-lg sm:text-xl">
                     {feature.icon}
                   </div>
                   <div>
-                    <p className="font-medium text-[#242424] text-md">
+                    <p className="font-medium text-[#242424] text-sm sm:text-md">
                       {feature.title}
                     </p>
                   </div>
@@ -133,34 +133,38 @@ const ScritchesWorks = () => {
           </div>
 
           {/* Center Section - Calendar and Booking */}
-          <div className="lg:col-span-1 flex-1">
-            <div className="relative w-full max-w-2xl">
+          <div className="lg:col-span-1 flex-1 w-full mt-8 lg:mt-0">
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto h-96 sm:h-110 md:h-120 lg:h-148">
               {/* Background shadow */}
               <img
-                className="w-full h-[37rem] rounded-3xl"
+                className="w-full h-full rounded-2xl sm:rounded-3xl object-cover"
                 src="/images/shadow.avif"
                 alt="Background shadow"
               />
+
               {/* Calendar overlay */}
-              <div className="absolute -rotate-12 -top-1 -left-10">
+              <div className="absolute -rotate-6 sm:-rotate-8 md:-rotate-12 -top-2 sm:-top-1 md:-top-1 left-1 lg:-left-10 w-auto">
                 <img
                   src="/images/calander.avif"
                   alt="Calendar view"
-                  className="w-full h-[25rem] object-contain rounded-2xl shadow-2xl"
+                  className="w-full h-52 sm:h-64 md:h-80 lg:h-100 object-contain rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
                 />
               </div>
+
               {/* Booking summary overlay */}
-              <div className="absolute -bottom-10 -right-1 z-20">
+              <div className="absolute -bottom-6 sm:-bottom-8 md:-bottom-10 -right-2 sm:-right-2 md:-right-2 z-20 w-auto">
                 <img
                   src="/images/bookingSummary.avif"
                   alt="Booking summary"
-                  className="w-full h-[30rem] object-contain rounded-2xl shadow-2xl"
+                  className="w-full h-64 sm:h-80 md:h-96 lg:h-120 object-contain rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
                 />
               </div>
-              <div className="absolute bottom-25 rotate-3 right-78 z-50">
-                <button
-                  className="w-full font-bold bg-primary text-white py-4 px-24 rounded-2xl shadow-2xl rounded-full"
-                >Book Now</button>
+
+              {/* Book Now Button */}
+              <div className="absolute cursor-pointer bottom-20 sm:bottom-22 md:bottom-20 lg:bottom-25 rotate-2 sm:rotate-2 md:rotate-3 right-44 sm:right-44 md:right-48 lg:right-78 z-50">
+                <button className="font-bold flex lg:hidden xl:flex cursor-pointer bg-primary text-white py-2.5 px-12 sm:py-3 sm:px-14 md:py-3 md:px-16 lg:py-4 lg:px-24 text-sm sm:text-sm md:text-base rounded-full shadow-lg sm:shadow-xl md:shadow-2xl hover:bg-[#44986f] transition-all duration-300 hover:scale-105">
+                  Book Now
+                </button>
               </div>
             </div>
           </div>
