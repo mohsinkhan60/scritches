@@ -23,7 +23,13 @@ const Header: React.FC = () => {
         />
       </div>
       <div className="relative mb-10 sm:mb-16 md:mb-20 bg-[#FBF7F4] rounded-3xl sm:rounded-[40px] md:rounded-[46px] max-width-full my-2 mx-0 md:mx-[68px] overflow-hidden z-10">
-        <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-10 text-center relative">
+        {/* Background Image */}
+        <img
+          src="/images/shadow.avif"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        />
+        <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-10 text-center relative z-10">
           {/* Badge */}
           <a className="inline-flex flex-wrap sm:flex-nowrap items-center justify-center gap-1.5 sm:gap-2 bg-[#BADBCB] text-[#1c4a35] font-semibold text-xs sm:text-sm px-2 py-1.5 rounded-full mb-4 shadow-sm transition-all hover:bg-[#c8eedb]">
             <button className="bg-[#53A57D] text-[#193125] px-2 sm:px-3 text-sm sm:text-[16px] rounded-full font-semibold">

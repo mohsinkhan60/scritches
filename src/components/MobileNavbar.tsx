@@ -8,7 +8,7 @@ const MobileNavbar = () => {
 
   return (
     <div
-      className={`flex flex-col gap-10 z-50 max-w-5xl mt-2 transition-all duration-500 fixed top-2 left-1/2 -translate-x-1/2 w-[98%] bg-white overflow-hidden mx-auto px-5 py-3 rounded-2xl md:hidden ${
+      className={`flex flex-col gap-10 z-50 max-w-5xl shadow-2xl mt-2 transition-all duration-500 fixed top-2 left-1/2 -translate-x-1/2 w-[98%] bg-[#FFFFFF] overflow-hidden mx-auto px-5 py-3 rounded-2xl md:hidden ${
         isOpen ? "h-[553px]" : "h-[50px]"
       }`}
     >
