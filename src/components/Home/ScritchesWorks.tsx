@@ -85,7 +85,7 @@ const ScritchesWorks = () => {
   ];
 
   return (
-    <div className="min-h-screen py-1 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-1 px-4 sm:px-6 lg:px-8 mb-20">
       {/* Header Section */}
       <div className="text-center mb-12 sm:mb-16 md:mb-20">
         <span className="inline-block bg-[#53A57D] text-white text-xs sm:text-[13px] font-semibold px-3 sm:px-4 py-1 rounded-xl mb-4 sm:mb-6">

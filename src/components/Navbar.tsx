@@ -25,7 +25,7 @@ const Navbar = () => {
     >
       <div
         className={`items-center justify-between p-3 lg:p-3 mx-auto rounded-full md:flex hidden transition-all duration-300 ${
-          isScrolled ? "max-w-[900px] bg-white" : "max-w-[1015px]"
+          isScrolled ? "max-w-[900px] bg-[#FCFCFA] shadow-2xl" : "max-w-[1015px]"
         }`}
       >
         <div className="flex items-center gap-3">
