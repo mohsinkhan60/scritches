@@ -88,8 +88,6 @@ const Header: React.FC = () => {
 
           {/* Corner Illustrations */}
         </div>
-        <div className="absolute bg-[#FBF3E7] h-165 rounded-full -z-1 -top-1/2 -left-1/8 max-md:w-28 md:aspect-square overflow-hidden pointer-events-none" />
-        <div className="absolute bg-[#FBF3E7] h-104 rounded-full -z-1 -bottom-32 -right-10 w-28 md:w-[410px] overflow-hidden pointer-events-none" />
       </div>
     </header>
   );
