@@ -4,7 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 const Header: React.FC = () => {
   return (
-    <header className="relative">
+    <header className="relative mt-24">
       <img
         src="/images/dog.avif"
         alt="Happy dog illustration"
