@@ -13,7 +13,7 @@ const Header: React.FC = () => {
       <img
         src="/images/dog-ball.avif"
         alt="Playful cat illustration"
-        className="absolute -bottom-20 md:-bottom-24 lg:-bottom-[104px] hidden lg:flex -right-8 md:-right-6 lg:-right-10 xl:right-4 2xl:right-10 w-32 md:w-40 lg:w-116 xl:w-125 z-20"
+        className="absolute -bottom-20 md:-bottom-24 lg:-bottom-[110px] hidden lg:flex -right-8 md:-right-6 lg:-right-10 xl:right-4 2xl:right-10 w-32 md:w-40 lg:w-116 xl:w-125 z-20"
       />
       <div className="flex justify-center h-[150px] z-50 absolute -bottom-6 w-full">
         <img
