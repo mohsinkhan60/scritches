@@ -137,25 +137,30 @@ const ScritchesWorks = () => {
             <div className="relative w-full max-w-2xl">
               {/* Background shadow */}
               <img
-                className="w-full h-[35rem] rounded-3xl"
+                className="w-full h-[37rem] rounded-3xl"
                 src="/images/shadow.avif"
                 alt="Background shadow"
               />
               {/* Calendar overlay */}
-              <div className="absolute -rotate-12 top-4 left-4 w-2/5">
+              <div className="absolute -rotate-12 -top-1 -left-10">
                 <img
                   src="/images/calander.avif"
                   alt="Calendar view"
-                  className="w-full h-auto"
+                  className="w-full h-[25rem] object-contain rounded-2xl shadow-2xl"
                 />
               </div>
               {/* Booking summary overlay */}
-              <div className="absolute bottom-4 right-4 w-2/5">
+              <div className="absolute -bottom-10 -right-1 z-20">
                 <img
                   src="/images/bookingSummary.avif"
                   alt="Booking summary"
-                  className="w-full h-auto"
+                  className="w-full h-[30rem] object-contain rounded-2xl shadow-2xl"
                 />
+              </div>
+              <div className="absolute bottom-25 rotate-3 right-78 z-50">
+                <button
+                  className="w-full font-bold bg-primary text-white py-4 px-24 rounded-2xl shadow-2xl rounded-full"
+                >Book Now</button>
               </div>
             </div>
           </div>
