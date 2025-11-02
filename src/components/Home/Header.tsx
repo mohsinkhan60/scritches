@@ -8,12 +8,12 @@ const Header: React.FC = () => {
       <img
         src="/images/dog.avif"
         alt="Happy dog illustration"
-        className="absolute -bottom-5 lg:flex hidden left-32 w-28 md:w-52 z-20"
+        className="absolute -bottom-5 hidden lg:flex left-20 md:left-24 xl:left-54 w-32 md:w-40 lg:w-52 z-20"
       />
       <img
         src="/images/dog-ball.avif"
         alt="Playful cat illustration"
-        className="absolute -bottom-[104px] -right-10 lg:flex hidden 2xl:right-4 w-28 md:w-116 z-20"
+        className="absolute -bottom-20 md:-bottom-24 lg:-bottom-[104px] hidden lg:flex -right-8 md:-right-6 lg:-right-10 xl:right-4 2xl:right-10 w-32 md:w-40 lg:w-116 xl:w-125 z-20"
       />
       <div className="flex justify-center h-[150px] z-50 absolute -bottom-6 w-full">
         <img
@@ -82,8 +82,8 @@ const Header: React.FC = () => {
 
           {/* Corner Illustrations */}
         </div>
-        <div className="absolute bg-[#FBF3E7] h-180 rounded-full -z-1 -top-1/2 -left-1/8 max-md:w-28 md:aspect-square overflow-hidden pointer-events-none" />
-        <div className="absolute bg-[#FBF3E7] h-116 rounded-full -z-1 -bottom-32 -right-10 w-28 md:w-md overflow-hidden pointer-events-none" />
+        <div className="absolute bg-[#FBF3E7] h-165 rounded-full -z-1 -top-1/2 -left-1/8 max-md:w-28 md:aspect-square overflow-hidden pointer-events-none" />
+        <div className="absolute bg-[#FBF3E7] h-104 rounded-full -z-1 -bottom-32 -right-10 w-28 md:w-[410px] overflow-hidden pointer-events-none" />
       </div>
     </header>
   );
