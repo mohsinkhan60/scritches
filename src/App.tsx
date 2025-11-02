@@ -1,5 +1,5 @@
 import Header from "./components/Home/Header";
-import HeaderCopy from "./components/Home/Header copy";
+import ScritchesWorks from "./components/Home/ScritchesWorks";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
 
@@ -9,7 +9,7 @@ const App = () => {
       <Navbar />
       <MobileNavbar />
       <Header />
-      <HeaderCopy />
+      <ScritchesWorks />
     </div>
   );
 };

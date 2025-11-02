@@ -19,7 +19,7 @@ const Header: React.FC = () => {
         <img
           src="/images/dog-ball.avif"
           alt="Playful cat illustration"
-          className="lg:hidden flex w-[28rem] object-cover "
+          className="lg:hidden flex w-md object-cover "
         />
       </div>
       <div className="relative mb-10 sm:mb-16 md:mb-20 bg-[#FBF7F4] rounded-3xl sm:rounded-[40px] md:rounded-[46px] max-width-full my-2 mx-0 md:mx-[68px] overflow-hidden z-10">
