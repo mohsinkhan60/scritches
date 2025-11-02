@@ -162,7 +162,7 @@ const ScritchesWorks = () => {
 
               {/* Book Now Button */}
               <div className="absolute cursor-pointer bottom-20 sm:bottom-22 md:bottom-20 lg:bottom-25 rotate-2 sm:rotate-2 md:rotate-3 right-44 sm:right-44 md:right-48 lg:right-78 z-50">
-                <button className="font-bold flex lg:hidden xl:flex cursor-pointer bg-primary text-white py-2.5 px-12 sm:py-3 sm:px-14 md:py-3 md:px-16 lg:py-4 lg:px-24 text-sm sm:text-sm md:text-base rounded-full shadow-lg sm:shadow-xl md:shadow-2xl hover:bg-[#44986f] transition-all duration-300 hover:scale-105">
+                <button className="font-bold flex lg:hidden xl:flex cursor-pointer bg-primary text-white py-2.5 px-12 sm:py-3 sm:px-14 md:py-3 md:px-16 lg:py-4 lg:px-20 text-sm sm:text-sm md:text-base rounded-full shadow-lg sm:shadow-xl md:shadow-2xl hover:bg-[#44986f] transition-all duration-300 hover:scale-105">
                   Book Now
                 </button>
               </div>
