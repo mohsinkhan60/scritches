@@ -1,9 +1,8 @@
-"use client";
 import React from "react";
 
 const Header: React.FC = () => {
   return (
-    <header className="relative mt-0 lg:mt-20">
+    <header className="relative mt-0 md:mt-20">
       <img
         src="/images/dog.avif"
         alt="Happy dog illustration"
@@ -60,7 +59,6 @@ const Header: React.FC = () => {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </header>

@@ -29,7 +29,7 @@ const Navbar = () => {
         className={`items-center justify-between p-3 lg:p-3 px-0 lg:px-4 mx-auto rounded-full md:flex hidden transition-all duration-300 ${
           isScrolled
             ? "max-w-[900px] bg-[#FCFCFA] shadow-2xl lg:px-6"
-            : "max-w-[1015px]"
+            : "lg:max-w-[1015px] max-w-[750px] "
         }`}
       >
         <div className="flex items-center gap-3">
