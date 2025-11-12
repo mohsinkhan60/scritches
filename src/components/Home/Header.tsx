@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { FiArrowRight } from "react-icons/fi";
 
 const Header: React.FC = () => {
   return (
-    <header className="relative mt-0 lg:mt-24">
+    <header className="relative mt-0 lg:mt-20">
       <img
         src="/images/dog.avif"
         alt="Happy dog illustration"
@@ -22,32 +21,18 @@ const Header: React.FC = () => {
           className="lg:hidden flex w-md object-cover "
         />
       </div>
-      <div className="relative mb-10 sm:mb-16 md:mb-20 bg-[#FBF7F4] rounded-3xl sm:rounded-[40px] md:rounded-[46px] max-width-full my-2 mx-0 md:mx-[68px] overflow-hidden z-10">
-        {/* Background Image */}
+      <div className="relative mb-10 sm:mb-16 md:mb-20 bg-[#FBF7F4] rounded-3xl sm:rounded-[40px] md:rounded-[46px] max-width-full my-2 mx-0 md:mx-[68px] overflow-hidden">
+        {/* Background image (absolute so it can be replaced with effects later) */}
         <img
           src="/images/shadow.avif"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
         />
-        <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-10 text-center relative z-10">
-          {/* Badge */}
-          <a className="inline-flex flex-wrap sm:flex-nowrap items-center justify-center gap-1.5 sm:gap-2 bg-[#BADBCB] text-[#1c4a35] font-semibold text-xs sm:text-sm px-2 py-1.5 rounded-full mb-4 shadow-sm transition-all hover:bg-[#c8eedb]">
-            <button className="bg-[#53A57D] text-[#193125] px-2 sm:px-3 text-sm sm:text-[16px] rounded-full font-semibold">
-              updates
-            </button>
-            <span>💸</span>
-            <span className="flex text-[#193125] text-xs sm:text-sm md:text-[16px] items-center gap-1">
-              <span className="hidden sm:inline">
-                Get our early adopter discount now
-              </span>
-              <span className="sm:hidden">Early adopter discount</span>
-              {/* transition-transform group-hover:translate-x-1 */}
-              <FiArrowRight />
-            </span>
-          </a>
-
+        <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-15 text-center relative z-20">
           {/* Title */}
-          <h1 className="font-urbanist font-bold tracking-tight text-4xl sm:text-4xl md:text-5xl lg:text-[66px] w-full text-[#333333] mx-auto">
+          <h1 className="font-urbanist font-bold tracking-tight mt-3 text-4xl sm:text-4xl md:text-5xl lg:text-[64px] w-full text-[#333333] mx-auto">
             <div className="mb-2 sm:mb-3">The Better Way to</div>
             <div className="mb-2 sm:mb-3">Manage Your Pet</div>
             <div>Care Business</div>
@@ -59,7 +44,7 @@ const Header: React.FC = () => {
           <img
             src="/images/check.svg"
             alt="Decorative underline"
-            className="mx-auto w-[85%] sm:w-[75%] md:w-[70%] max-w-[480px] hidden lg:flex"
+            className="mx-auto w-[85%] sm:w-[75%] md:w-[70%] max-w-[370px] hidden lg:flex"
           />
           <p className="text-[#5a6b7b] md:max-w-md text-xl font-semibold max-w-[20rem] mx-auto px-2 sm:px-0">
             Scritches is your partner in transforming your solo pet sitting or
