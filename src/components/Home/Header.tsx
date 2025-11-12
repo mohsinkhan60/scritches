@@ -1,8 +1,6 @@
-import React from "react";
-
-const Header: React.FC = () => {
+const Header = () => {
   return (
-    <header className="relative mt-0 md:mt-20">
+    <header className="relative mt-16 lg:mt-20">
       <img
         src="/images/dog.avif"
         alt="Happy dog illustration"
@@ -21,19 +19,19 @@ const Header: React.FC = () => {
         />
       </div>
       <div className="relative mb-10 sm:mb-16 md:mb-20 bg-[#FBF7F4] rounded-3xl sm:rounded-[40px] md:rounded-[46px] max-width-full my-2 mx-0 md:mx-[68px] overflow-hidden">
-        <img
-          src="/images/shadow.avif"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none z-0"
-        />
+        {/* Decorative orange circles */}
+        <div className="absolute -top-40 lg:-top-60 xl:-top-5 -left-20 lg:-left-1/50 xl:left-1/9 w-100 lg:w-190 aspect-square bg-[#FBF3E7] rounded-full lg:-translate-x-1/2 lg:-translate-y-1/2 pointer-events-none"></div>
+        <div className="absolute -bottom-[30%] sm:-bottom-[45%] -translate-y-1/3 -translate-x-1/2 -right-1/2 sm:-right-1/3 md:-right-1/4 lg:-right-1/5 xl:-right-1/6 w-90 sm:w-100 aspect-square bg-[#FBF3E7] rounded-full pointer-events-none"></div>
+
         <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-[70px] text-center relative z-40">
           {/* Title */}
-          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-4xl sm:text-4xl md:text-5xl lg:text-[64px] w-full text-[#333333] mx-auto">
+          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] max-md:hidden w-full text-[#333333] mx-auto max-md:leading-none">
             <div className="mb-2 sm:mb-3">The Better Way to</div>
             <div className="mb-2 sm:mb-3">Manage Your Pet</div>
             <div>Care Business</div>
+          </h1>
+          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] w-full md:hidden text-[#333333] mx-auto max-md:leading-[75px]">
+            The Better Way to Manage Your Pet Care Business
           </h1>
 
           <img
