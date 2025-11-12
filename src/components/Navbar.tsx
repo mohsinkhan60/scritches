@@ -43,14 +43,14 @@ const Navbar = () => {
           </span>
         </div>
 
-        <ul className="flex items-center justify-between gap-5 2xl:gap-5 text-lg">
+        <ul className="flex items-center justify-between gap-5 2xl:gap-7 text-lg">
           {navbarLinks.map((link) => (
             <li
               key={link.name}
               className="flex items-center gap-2 relative group cursor-pointer"
             >
               <p
-                className={`font-medium ${
+                className={`font-medium text-black ${
                   link.name === "Pricing" || link.name === "Blog"
                     ? "text-black"
                     : "text-black/60"
@@ -84,7 +84,7 @@ const Navbar = () => {
         </ul>
 
         <div>
-          <button className="bg-primary text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-7 border border-black py-2 flex items-center gap-2">
+          <button className="bg-primary text-white cursor-pointer font-bold rounded-[1.2rem] group transition-all px-[30px] border border-black py-2 flex items-center gap-2">
             Start for Free{" "}
             <div className="relative transition-all duration-500">
               <LuArrowUpRight className="opacity-0 size-5" />

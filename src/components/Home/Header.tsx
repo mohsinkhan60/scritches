@@ -25,12 +25,12 @@ const Header = () => {
 
         <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-[70px] text-center relative z-40">
           {/* Title */}
-          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] max-md:hidden w-full text-[#333333] mx-auto max-md:leading-none">
+          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] max-md:hidden w-full text-[#333333] mx-auto">
             <div className="mb-2 sm:mb-3">The Better Way to</div>
             <div className="mb-2 sm:mb-3">Manage Your Pet</div>
             <div>Care Business</div>
           </h1>
-          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] w-full md:hidden text-[#333333] mx-auto max-md:leading-[75px]">
+          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] w-full md:hidden text-[#333333] mx-auto">
             The Better Way to Manage Your Pet Care Business
           </h1>
 
