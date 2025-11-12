@@ -26,9 +26,9 @@ const Navbar = () => {
       }
     >
       <div
-        className={`items-center justify-between p-3 lg:p-3 lg:px-5 mx-auto rounded-full md:flex hidden transition-all duration-300 ${
+        className={`items-center justify-between p-3 lg:p-3 px-0 lg:px-4 mx-auto rounded-full md:flex hidden transition-all duration-300 ${
           isScrolled
-            ? "max-w-[900px] bg-[#FCFCFA] shadow-2xl"
+            ? "max-w-[900px] bg-[#FCFCFA] shadow-2xl lg:px-6"
             : "max-w-[1015px]"
         }`}
       >
@@ -60,7 +60,8 @@ const Navbar = () => {
               </p>
               {link.subLinks && (
                 <BsChevronDown
-                  className={`size-4 text-primary ${
+                strokeWidth={1}
+                  className={`size-3 font-extrabold text-primary ${
                     link.name === "More" && "2xl:block hidden"
                   }`}
                 />
