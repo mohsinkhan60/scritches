@@ -4,12 +4,12 @@ const Header = () => {
       <img
         src="/images/dog.avif"
         alt="Happy dog illustration"
-        className="absolute -bottom-5 hidden lg:flex left-20 md:left-24 xl:left-54 w-32 md:w-40 lg:w-52 z-10 pointer-events-none"
+        className="absolute -bottom-5 hidden lg:flex left-20 md:left-24 xl:left-52 w-32 md:w-40 lg:w-52 z-10 pointer-events-none"
       />
       <img
         src="/images/dog-ball.avif"
         alt="Playful cat illustration"
-        className="absolute -bottom-20 md:-bottom-24 lg:-bottom-[110px] hidden lg:flex -right-8 md:-right-6 lg:-right-10 xl:right-4 2xl:right-10 w-32 md:w-40 lg:w-116 xl:w-125 z-10 pointer-events-none"
+        className="absolute -bottom-20 md:-bottom-24 lg:-bottom-[117px] hidden lg:flex -right-8 md:-right-6 lg:-right-10 xl:right-4 2xl:right-10 w-32 md:w-40 lg:w-116 xl:w-129 z-10 pointer-events-none"
       />
       <div className="flex justify-center h-[150px] absolute -bottom-6 w-full z-10 pointer-events-none">
         <img
