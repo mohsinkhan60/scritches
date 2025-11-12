@@ -22,7 +22,6 @@ const Header: React.FC = () => {
         />
       </div>
       <div className="relative mb-10 sm:mb-16 md:mb-20 bg-[#FBF7F4] rounded-3xl sm:rounded-[40px] md:rounded-[46px] max-width-full my-2 mx-0 md:mx-[68px] overflow-hidden">
-        {/* Background image (absolute so it can be replaced with effects later) */}
         <img
           src="/images/shadow.avif"
           alt=""
@@ -38,9 +37,6 @@ const Header: React.FC = () => {
             <div>Care Business</div>
           </h1>
 
-          {/* Subtitle */}
-
-          {/* Decorative line */}
           <img
             src="/images/check.svg"
             alt="Decorative underline"
@@ -48,11 +44,10 @@ const Header: React.FC = () => {
           />
           <p className="text-[#566675]  md:max-w-md text-xl font-bold max-w-[20rem] mx-auto px-2 sm:px-0">
             Scritches is your partner in transforming your solo pet sitting or
-            dog walking business from <strong>side hustle</strong> to{" "}
+            dog walking business from <strong>side hustle</strong> to
             <strong>full-time success</strong>.
           </p>
 
-          {/* CTA */}
           <div className="flex relative my-5 md:mb-0 flex-col items-center justify-center">
             <div className="mt-4 flex flex-col-reverse sm:flex-row justify-center items-center gap-8 mb-18 lg:mb-0">
               <p className="text-[#475466] text-sm sm:text-base md:text-[15px] font-semibold flex text-center justify-center">
@@ -66,7 +61,6 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Corner Illustrations */}
         </div>
       </div>
     </header>
