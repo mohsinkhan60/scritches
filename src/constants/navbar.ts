@@ -24,8 +24,8 @@ export const navbarLinks = [
     ],
   },
   {
-    name: "Price",
-    link: "/price",
+    name: "Pricing",
+    link: "/Pricing",
   },
   {
     name: "Blog",
@@ -59,8 +59,8 @@ export const mobileNavbarLinks = [
     ],
   },
   {
-    name: "Price",
-    link: "/price",
+    name: "Pricing",
+    link: "/Pricing",
   },
   {
     name: "Blog",

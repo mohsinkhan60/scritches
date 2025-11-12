@@ -21,11 +21,15 @@ const Navbar = () => {
 
   return (
     <div
-      className={"fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-2"}
+      className={
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-2"
+      }
     >
       <div
-        className={`items-center justify-between p-3 lg:p-3 mx-auto rounded-full md:flex hidden transition-all duration-300 ${
-          isScrolled ? "max-w-[900px] bg-[#FCFCFA] shadow-2xl" : "max-w-[1015px]"
+        className={`items-center justify-between p-3 lg:p-3 lg:px-5 mx-auto rounded-full md:flex hidden transition-all duration-300 ${
+          isScrolled
+            ? "max-w-[900px] bg-[#FCFCFA] shadow-2xl"
+            : "max-w-[1015px]"
         }`}
       >
         <div className="flex items-center gap-3">
@@ -39,7 +43,7 @@ const Navbar = () => {
           </span>
         </div>
 
-        <ul className="flex items-center justify-between gap-5 2xl:gap-8 text-lg">
+        <ul className="flex items-center justify-between gap-5 2xl:gap-5 text-lg">
           {navbarLinks.map((link) => (
             <li
               key={link.name}
@@ -47,7 +51,7 @@ const Navbar = () => {
             >
               <p
                 className={`font-medium ${
-                  link.name === "Price" || link.name === "Blog"
+                  link.name === "Pricing" || link.name === "Blog"
                     ? "text-black"
                     : "text-black/60"
                 } ${link.name === "More" && "2xl:block hidden"}`}
@@ -79,7 +83,7 @@ const Navbar = () => {
         </ul>
 
         <div>
-          <button className="bg-primary text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-8 border border-black py-2 flex items-center gap-2">
+          <button className="bg-primary text-white cursor-pointer font-semibold rounded-[1.2rem] group transition-all px-7 border border-black py-2 flex items-center gap-2">
             Start for Free{" "}
             <div className="relative transition-all duration-500">
               <LuArrowUpRight className="opacity-0 size-5" />

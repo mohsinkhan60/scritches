@@ -51,7 +51,7 @@ const MobileNavbar = () => {
           >
             <p
               className={`font-medium ${
-                link.name === "Price" || link.name === "Blog"
+                link.name === "Pricing" || link.name === "Blog"
                   ? "text-black"
                   : "text-black/80"
               }`}
