@@ -49,7 +49,7 @@ const Header: React.FC = () => {
           </p>
 
           <div className="flex relative my-5 md:mb-0 flex-col items-center justify-center">
-            <div className="mt-4 flex flex-col-reverse sm:flex-row justify-center items-center gap-8 mb-18 lg:mb-0">
+            <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-8 mb-18 lg:mb-0">
               <p className="text-[#475466] text-sm sm:text-base md:text-[15px] font-semibold flex text-center justify-center">
                 Join 300+ petpreneurs already <br className="hidden sm:block" />
                 growing their business
