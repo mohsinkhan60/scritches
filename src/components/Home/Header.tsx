@@ -1,12 +1,30 @@
+import { motion } from "motion/react";
+
 const Header = () => {
   return (
     <header className="relative mt-16 lg:mt-20">
-      <img
+      <motion.img
+        initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+          translateY: 0,
+        }}
+        viewport={{ once: true }}
         src="/images/dog.avif"
         alt="Happy dog illustration"
         className="absolute -bottom-5 hidden lg:flex left-20 md:left-24 xl:left-52 w-32 md:w-40 lg:w-52 z-10 pointer-events-none"
       />
-      <img
+      <motion.img
+        initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+          translateY: 0,
+        }}
+        viewport={{ once: true }}
         src="/images/dog-ball.avif"
         alt="Playful cat illustration"
         className="absolute -bottom-20 md:-bottom-24 lg:-bottom-[117px] hidden lg:flex -right-8 md:-right-6 lg:-right-10 xl:right-4 2xl:right-10 w-32 md:w-40 lg:w-116 xl:w-129 z-10 pointer-events-none"
@@ -25,25 +43,53 @@ const Header = () => {
 
         <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-[70px] text-center relative z-40">
           {/* Title */}
-          <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] max-md:hidden w-full text-[#333333] mx-auto">
+          <motion.h1
+            initial={{ scale: 0.7, opacity: 0, translateY: 50 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+              translateY: 0,
+            }}
+            viewport={{ once: true }}
+            className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] max-md:hidden w-full text-[#333333] mx-auto"
+          >
             <div className="mb-2 sm:mb-3">The Better Way to</div>
             <div className="mb-2 sm:mb-3">Manage Your Pet</div>
             <div>Care Business</div>
-          </h1>
+          </motion.h1>
           <h1 className="font-urbanist font-bold py-10 md:py-0 tracking-tight mt-3 text-[63px] sm:text-4xl md:text-5xl lg:text-[64px] w-full md:hidden text-[#333333] mx-auto">
             The Better Way to Manage Your Pet Care Business
           </h1>
 
-          <img
+          <motion.img
+            initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+              translateY: 0,
+            }}
+            viewport={{ once: true }}
             src="/images/check.svg"
             alt="Decorative underline"
             className="mx-auto w-[85%] sm:w-[75%] md:w-[70%] max-w-[370px] hidden lg:flex"
           />
-          <p className="text-[#566675] sm:text-lg md:text-xl md:max-w-md text-xl font-bold max-w-[20rem] mx-auto px-2 sm:px-0">
+          <motion.p
+            initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+              translateY: 0,
+            }}
+            viewport={{ once: true }}
+            className="text-[#566675] sm:text-lg md:text-xl md:max-w-md text-xl font-bold max-w-[20rem] mx-auto px-2 sm:px-0"
+          >
             Scritches is your partner in transforming your solo pet sitting or
             dog walking business from <strong>side hustle</strong> to
             <strong>full-time success</strong>.
-          </p>
+          </motion.p>
 
           <div className="flex relative my-5 md:mb-0 flex-col items-center justify-center">
             <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-8 mb-18 lg:mb-0">
