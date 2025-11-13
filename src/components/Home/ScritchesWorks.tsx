@@ -181,13 +181,13 @@ const ScritchesWorks = () => {
                 <button className="font-bold flex cursor-pointer bg-primary text-white py-2.5 px-12 sm:py-3 sm:px-14 md:py-3 md:px-16 lg:py-[18px] lg:px-26 text-sm sm:text-sm md:text-base rounded-full shadow-lg sm:shadow-xl md:shadow-2xl hover:bg-[#44986f] transition-all duration-300 hover:scale-105">
                   Book Now
                 </button>
-                <p className="-rotate-8 text-sm -ml-10 -mb-12">
+                <p className="-rotate-8 text-[10px] sm:text-sm -ml-0px sm:-ml-10 -mb-12">
                   Try our live demo!
                 </p>
                 <img
                   src="/images/arrow.svg"
                   alt="Arrow"
-                  className="w-[121px] h-[121px] rotate-190"
+                  className="sm:w-[121px] w-[90px] sm:h-[121px] mt-6 sm:mt-0 h-[90px] rotate-190"
                 />
               </motion.div>
             </div>
