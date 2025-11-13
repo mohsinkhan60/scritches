@@ -4,8 +4,8 @@ const Header = () => {
   return (
     <header className="relative mt-16 lg:mt-20">
       <motion.img
-        initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+        initial={{ opacity: 0, translateY: 40 }}
+        transition={{ duration: 1, delay: 0.7 }}
         whileInView={{
           opacity: 1,
           scale: 1,
@@ -17,8 +17,8 @@ const Header = () => {
         className="absolute -bottom-5 hidden lg:flex left-20 md:left-24 xl:left-52 w-32 md:w-40 lg:w-52 z-10 pointer-events-none"
       />
       <motion.img
-        initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+        initial={{ opacity: 0, translateY: 40 }}
+        transition={{ duration: 1, delay: 0.7 }}
         whileInView={{
           opacity: 1,
           scale: 1,
@@ -44,7 +44,7 @@ const Header = () => {
         <div className="mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-[70px] text-center relative z-40">
           {/* Title */}
           <motion.h1
-            initial={{ scale: 0.7, opacity: 0, translateY: 50 }}
+            initial={{ opacity: 0, translateY: 10 }}
             transition={{ duration: 1, ease: "easeOut" }}
             whileInView={{
               opacity: 1,
@@ -63,7 +63,7 @@ const Header = () => {
           </h1>
 
           <motion.img
-            initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+            initial={{ opacity: 0, translateY: 100 }}
             transition={{ duration: 1, ease: "easeOut" }}
             whileInView={{
               opacity: 1,
@@ -76,7 +76,7 @@ const Header = () => {
             className="mx-auto w-[85%] sm:w-[75%] md:w-[70%] max-w-[370px] hidden lg:flex"
           />
           <motion.p
-            initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+            initial={{ opacity: 0, translateY: 100 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
             whileInView={{
               opacity: 1,
