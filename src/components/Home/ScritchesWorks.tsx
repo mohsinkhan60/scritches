@@ -1,8 +1,6 @@
-"use client";
+import { motion } from "motion/react";
 
-import React from "react";
-
-const ScritchesWorks: React.FC = () => {
+const ScritchesWorks = () => {
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-5 mb-20">
       <div className="text-center mb-12 sm:mb-16 md:mb-20">
@@ -138,7 +136,15 @@ const ScritchesWorks: React.FC = () => {
               />
 
               <div className="absolute -rotate-6 sm:-rotate-8 md:-rotate-10 -top-2 sm:-top-1 md:-top-1 left-1 lg:-left-10 w-auto">
-                <img
+                <motion.img
+                  initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                    translateY: 0,
+                  }}
+                  viewport={{ once: true }}
                   alt="Calendar view"
                   className="w-full h-52 sm:h-64 md:h-80 lg:h-98 object-contain rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
                   src="/images/calander.avif"
@@ -146,24 +152,44 @@ const ScritchesWorks: React.FC = () => {
               </div>
 
               <div className="absolute -bottom-6 sm:-bottom-8 md:-bottom-10 -right-2 sm:-right-2 md:-right-4 z-20 w-auto">
-                <img
+                <motion.img
+                  initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                    translateY: 0,
+                  }}
+                  viewport={{ once: true }}
                   alt="Booking summary"
                   className="w-full h-64 sm:h-80 md:h-96 lg:h-130 object-contain rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
                   src="/images/bookingSummary.avif"
                 />
               </div>
 
-              <div className="absolute cursor-pointer bottom-2 sm:bottom-4 md:bottom-4 lg:bottom-6 rotate-2 sm:rotate-2 md:rotate-2 right-44 sm:right-44 md:right-48 lg:right-78 z-50">
+              <motion.div
+                initial={{ scale: 0.7, opacity: 0, translateY: 150 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                  translateY: 0,
+                }}
+                viewport={{ once: true }}
+                className="absolute cursor-pointer bottom-2 sm:bottom-4 md:bottom-4 lg:bottom-6 rotate-2 sm:rotate-2 md:rotate-2 right-44 sm:right-44 md:right-48 lg:right-78 z-50"
+              >
                 <button className="font-bold flex cursor-pointer bg-primary text-white py-2.5 px-12 sm:py-3 sm:px-14 md:py-3 md:px-16 lg:py-[18px] lg:px-26 text-sm sm:text-sm md:text-base rounded-full shadow-lg sm:shadow-xl md:shadow-2xl hover:bg-[#44986f] transition-all duration-300 hover:scale-105">
                   Book Now
                 </button>
-                <p className="-rotate-8 text-sm -ml-10 -mb-12">Try our live demo!</p>
+                <p className="-rotate-8 text-sm -ml-10 -mb-12">
+                  Try our live demo!
+                </p>
                 <img
                   src="/images/arrow.svg"
                   alt="Arrow"
                   className="w-[121px] h-[121px] rotate-190"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
