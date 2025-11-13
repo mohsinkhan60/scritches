@@ -39,7 +39,7 @@ const Header = () => {
             alt="Decorative underline"
             className="mx-auto w-[85%] sm:w-[75%] md:w-[70%] max-w-[370px] hidden lg:flex"
           />
-          <p className="text-[#566675]  md:max-w-md text-xl font-bold max-w-[20rem] mx-auto px-2 sm:px-0">
+          <p className="text-[#566675] sm:text-lg md:text-xl md:max-w-md text-xl font-bold max-w-[20rem] mx-auto px-2 sm:px-0">
             Scritches is your partner in transforming your solo pet sitting or
             dog walking business from <strong>side hustle</strong> to
             <strong>full-time success</strong>.
